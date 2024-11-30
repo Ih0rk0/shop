@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Define your Product and Comment types
 interface Product {
-  id: number;
+  id: string;
   name: string;
   count: number;
   price: number;
@@ -11,7 +11,7 @@ interface Product {
 }
 
 interface Comment {
-  id: number;
+  id: string;
   productId: number;
   content: string;
 }
@@ -42,7 +42,7 @@ export const addProduct = createAsyncThunk('products/addProduct', async (product
   return response.data;
 });
 
-export const deleteProduct = createAsyncThunk('products/deleteProduct', async (id: number) => {
+export const deleteProduct = createAsyncThunk('products/deleteProduct', async (id: string) => {
   await axios.delete(`http://localhost:5000/products/${id}`);
   return id;
 });
@@ -52,7 +52,7 @@ export const addComment = createAsyncThunk('products/addComment', async (comment
   return response.data;
 });
 
-export const deleteComment = createAsyncThunk('products/deleteComment', async (id: number) => {
+export const deleteComment = createAsyncThunk('products/deleteComment', async (id: string) => {
   await axios.delete(`http://localhost:5000/comments/${id}`);
   return id;
 });

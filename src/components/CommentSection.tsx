@@ -29,12 +29,12 @@ const CommentSection: React.FC<{ productId: number }> = ({ productId }) => {
 
   const handleAddComment = () => {
     if (commentText.trim() !== '') {
-      dispatch(addComment({ id: Date.now(), productId, content: commentText }));
+      dispatch(addComment({ id: Date.now().toString(), productId, content: commentText }));
       setCommentText('');
     }
   };
 
-  const handleDeleteComment = (id: number) => {
+  const handleDeleteComment = (id: string) => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
       dispatch(deleteComment(id));
     }

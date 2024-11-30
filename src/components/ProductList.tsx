@@ -22,7 +22,7 @@ const ProductList: React.FC = () => {
     }
   }, [productStatus, dispatch]);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       dispatch(deleteProduct(id));
     }

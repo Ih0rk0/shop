@@ -30,7 +30,7 @@ const AddProductModal: React.FC = () => {
 
   const handleAddProduct = () => {
     if (name && count > 0 && price > 0) {
-      dispatch(addProduct({ id: Date.now(), name, count, price, description }));
+      dispatch(addProduct({ id: Date.now().toString(), name, count, price, description }));
       handleClose();
     } else {
       alert('Please fill in all fields');
