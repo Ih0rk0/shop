@@ -1,7 +1,8 @@
 "use client"
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../products/productSlice';
+import { deleteProduct, addProduct, editProduct } from '../products/productSlice';
+import { AppDispatch } from '../app/store';
 import {
   Button,
   Dialog,
@@ -21,13 +22,13 @@ interface Product {
   description: string;
 }
 
-const EditProductModal: React.FC<{ product: Product }> = ({ product }) => {
+const EditProductModal: React.FC<{ product: Product  }> = ({ product }) => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(product.name);
   const [count, setCount] = useState(product.count);
   const [price, setPrice] = useState(product.price);
   const [description, setDescription] = useState(product.description);
-  const dispatch = useDispatch();
+  const dispatch :AppDispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,9 +38,10 @@ const EditProductModal: React.FC<{ product: Product }> = ({ product }) => {
     setOpen(false);
   };
 
-  const handleEditProduct = () => {
+  const handleEditProduct = async () => {
     if (name && count > 0 && price > 0) {
-      // Normally, we'd dispatch an updateProduct action here
+     
+      dispatch(editProduct({ id:product.id, name, count, price, description }));
       handleClose();
     } else {
       alert('Please fill in all fields');
